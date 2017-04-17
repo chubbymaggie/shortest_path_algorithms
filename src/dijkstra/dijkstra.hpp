@@ -16,7 +16,6 @@ struct Dijkstra {
 
 std::vector<int> Dijkstra::shortest_path() {
 
-
   std::priority_queue<std::pair<int,int> , std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>> > queue;
   std::vector<int> distance(G.verticies().size(), INT_MAX);
 

@@ -1,5 +1,5 @@
 #include "../undirected_graph/undirected_graph.hpp"
-#include "dijkstra.hpp"
+#include "bellman_ford.hpp"
 
 #define A 0
 #define B 1
@@ -48,8 +48,8 @@ int main() {
   ug.add_edge(G, E, 8);
   ug.add_edge(G, F, 12);
 
-  auto dj = Dijkstra(ug, A);
-  dj.shortest_path();
+  auto bf = Bellman_ford(ug, A);
+  bf.shortest_path();
 
   return 0;
 }

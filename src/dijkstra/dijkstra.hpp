@@ -46,7 +46,8 @@ std::vector<int> Dijkstra::shortest_path() {
   }
 }
   for(int i = 0; i < 2000000; i++)
-    std::cout << i << " --> " << distance[i] << "\n";
+    if(distance[i] != INT_MAX)
+      std::cout << i << " --> " << distance[i] << "\n";
   
 
 

@@ -25,8 +25,8 @@ int main() {
   for(int i = 0; i < 2000000; i ++)
     weights.push_back(rand() % 10);
 
-   //std::shuffle(nodes1.begin(), nodes1.end(), std::default_random_engine(seed));
-   //std::shuffle(nodes2.begin(), nodes2.end(), std::default_random_engine(seed));
+   std::shuffle(nodes1.begin(), nodes1.end(), std::default_random_engine(seed));
+   std::shuffle(nodes2.begin(), nodes2.end(), std::default_random_engine(seed));
    std::shuffle(weights.begin(), weights.end(), std::default_random_engine(seed));
 
 

@@ -1,3 +1,6 @@
+#ifndef DIJKSTRA_HPP
+#define DIJKSTRA_HPP
+
 #include "../undirected_graph/undirected_graph.hpp"
 #include <vector>
 #include <iostream>
@@ -11,7 +14,8 @@ struct Dijkstra {
   std::vector<int> distance;
   std::vector<int> parent;
 
-  Dijkstra(undirected_graph<int, int> & G, int src) : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
+  Dijkstra(undirected_graph<int, int> & G, int src)
+    : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
   
   void shortest_path();
   void print_cost();
@@ -83,6 +87,7 @@ void Dijkstra::print_path() {
   }
 }
 
+#endif
 
 
 

@@ -1,10 +1,10 @@
+#ifndef BELLMAN_FORD_HPP
+#define BELLMAN_FORD_HPP
+
 #include "../undirected_graph/undirected_graph.hpp"
 #include <vector>
 #include <climits>
 #include <iostream>
-
-#ifndef BELLMAN_FORD_HPP
-#define BELLMAN_FORD_HPP
 
 struct Bellman_ford {
   undirected_graph<int, int> G;
@@ -12,7 +12,8 @@ struct Bellman_ford {
   std::vector<int> distance;
   std::vector<int> parent;
 
-  Bellman_ford(undirected_graph<int, int> & G, int src) : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
+  Bellman_ford(undirected_graph<int, int> & G, int src)
+    : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
 
   void shortest_path();
   void print_cost();

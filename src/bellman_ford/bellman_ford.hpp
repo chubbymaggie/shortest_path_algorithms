@@ -15,11 +15,13 @@ struct Bellman_ford {
   Bellman_ford(undirected_graph<int, int> & G, int src) : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
 
   void shortest_path();
+  void print_cost();
+  void print_path();
 
 };
 
 void Bellman_ford::shortest_path() {
-  distance[src] = 0;
+   distance[src] = 0;
 
    for(int i = 0; i < G.verticies().size() - 1; i++) {
      for(auto e : G.edges()) {
@@ -43,11 +45,20 @@ void Bellman_ford::shortest_path() {
      }
    }
 
+   return;
+}
+
+void Bellman_ford::print_cost() {
+
   for(int i = 0; i < distance.size(); i++)
     if(distance[i] != INT_MAX)
       std::cout << i << " --> " << distance[i] << "\n";
 
-  for(int i = 0; i < parent.size(); i++) 
+  return;
+}
+
+void Bellman_ford::print_path() {
+  for(int i = 0; i < parent.size(); i++) {
 
     if(parent[i] != -1) {
       std::vector<int> path;
@@ -67,9 +78,8 @@ void Bellman_ford::shortest_path() {
       std::cout << path[path.size() - 1] << "\n";
 
     }
-  
+  }
 
-   return;
 }
 
 #endif

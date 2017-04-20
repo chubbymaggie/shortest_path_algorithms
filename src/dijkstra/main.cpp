@@ -22,7 +22,7 @@ int main() {
   ug.add_edge(A, F, 7);
 
   ug.add_edge(B, A, 2);
-  ug.add_edge(B, C, 3);
+  ug.add_edge(B, C, 3);s
   ug.add_edge(B, D, 3);
 
   ug.add_edge(C, A, 4);
@@ -50,6 +50,8 @@ int main() {
 
   auto dj = Dijkstra(ug, A);
   dj.shortest_path();
+  dj.print_cost();
+  dj.print_path();
 
   return 0;
 }

@@ -13,11 +13,13 @@ struct Dijkstra {
 
   Dijkstra(undirected_graph<int, int> & G, int src) : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
   
-  std::vector<int> shortest_path();  
+  void shortest_path();
+  void print_cost();
+  void print_path();
 
 }; 
 
-std::vector<int> Dijkstra::shortest_path() {
+void Dijkstra::shortest_path() {
 
   std::priority_queue<std::pair<int,int> , std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>> > queue;
 
@@ -43,12 +45,22 @@ std::vector<int> Dijkstra::shortest_path() {
       }
     }
   }
+  
+  return;
+}
+
+
+void Dijkstra::print_cost() {
 
   for(int i = 0; i < distance.size(); i++)
     if(distance[i] != INT_MAX)
       std::cout << i << " --> " << distance[i] << "\n";
 
-  for(int i = 0; i < parent.size(); i++) 
+  return;
+}
+
+void Dijkstra::print_path() {
+  for(int i = 0; i < parent.size(); i++) {
 
     if(parent[i] != -1) {
       std::vector<int> path;
@@ -68,9 +80,9 @@ std::vector<int> Dijkstra::shortest_path() {
       std::cout << path[path.size() - 1] << "\n";
 
     }
-  
-  return distance;
+  }
 }
+
 
 
 

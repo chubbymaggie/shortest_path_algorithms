@@ -50,6 +50,8 @@ int main() {
 
   auto bf = Bellman_ford(ug, A);
   bf.shortest_path();
+  bf.print_cost();
+  bf.print_path();
 
   return 0;
 }

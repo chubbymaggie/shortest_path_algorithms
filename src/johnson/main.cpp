@@ -17,6 +17,8 @@ int main() {
 
   auto j = Johnson(ug);
   j.shortest_paths();
+  j.print_paths();
+  j.print_costs();
 
   return 0;
 }

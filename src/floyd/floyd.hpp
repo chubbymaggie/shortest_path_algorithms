@@ -14,7 +14,7 @@ struct Floyd {
   Floyd(undirected_graph<int, int> & G) : G(G) {
     for(auto v : G.verticies()) {
       std::vector<int> dtemp(std::vector<int>(G.verticies().size(), 3000000));
-      std::vector<int> ptemp(std::vector<int>(G.verticies().size(), 0));
+      std::vector<int> ptemp(std::vector<int>(G.verticies().size(), -1));
       distances.push_back(std::move(dtemp));
       parents.push_back(std::move(ptemp));
     }
@@ -53,12 +53,7 @@ void Floyd::shortest_paths() {
 }
 
 void Floyd::print_paths() {
-  for(auto v : parents) {
-    for(auto i : v) {
-      std::cout << i << ' ';
-    }
-    std::cout << "\n";
-  }
+  std::cerr << "Function (Floyd::print_paths) is not implemented\n";
 }
 
 void Floyd::print_costs() {

@@ -8,21 +8,83 @@
 
 struct Johnson {
   undirected_graph<int, int> G;
+
+  std::vector<std::vector<int>> distances;
+  std::vector<std::vector<int>> parents;
+  std::vector<int> temp_distances;
    
   Johnson(undirected_graph<int, int> & G) : G(G) { }
 
+  void reweight_graph(undirected_graph<int, int> &, undirected_graph<int, int> &);
   void shortest_paths();
-
+  void print_paths();
+  void print_costs();
   
 };
 
 void Johnson::shortest_paths() {
   //check if re-weight is needed?
-/* reweighting graph */
-  for(auto e : G.edges())
-    std::cout << e.weight << " ";
-  std::cout << "\n";
 
+  undirected_graph<int, int> reweighted_graph;
+  reweight_graph(G, reweighted_graph);
+
+  /* run dijkstras on all verticies */
+  /* distances[0] holds vector of distances to nodes from vertex 0 */
+  for(auto u : reweighted_graph.verticies()) {
+    auto d = Dijkstra(reweighted_graph, u.data);
+    d.shortest_path();
+    std::vector<int> org_dist;
+    for(auto v : G.verticies()) {
+      int org = d.distance[v.data] - temp_distances[u.data] + temp_distances[v.data];
+      org_dist.push_back(org);
+    }
+    distances.push_back(org_dist);
+    parents.push_back(d.parent);
+  }
+
+  return;
+}
+
+void Johnson::print_paths() {
+
+  for(auto parent : parents) {
+    for(int i = 0; i < parent.size(); i++) {
+
+      if(parent[i] != -1) {
+
+        std::vector<int> path;
+        path.push_back(i);
+        int p = parent[i];
+
+        while(p != -1) {
+          path.push_back(p);
+          p = parent[p];
+        }
+
+        reverse(path.begin(), path.end());
+
+        for(int i = 0; i < path.size() - 1; i++) {
+          std::cout << path[i] << " -> ";
+        }
+
+        std::cout << path[path.size() - 1] << "\n";
+
+      }
+    }
+  }
+}
+
+void Johnson::print_costs() {
+  for(auto v : distances) {
+    for(auto i : v) {
+      std::cout << i << ' ';
+    }
+    std::cout << "\n";
+  }
+}
+
+void Johnson::reweight_graph(undirected_graph<int, int> & G, undirected_graph<int, int> & reweighted_graph) {
+  // need to be able to edit weights in graph, that would get rid of this extra graph
   undirected_graph<int, int> temp;
 
   for(auto v : G.verticies()) {
@@ -32,6 +94,7 @@ void Johnson::shortest_paths() {
   for(auto e : G.edges()) {
     temp.add_edge(e.source, e.target, e.weight);
   }
+
   //temp.verticies().size() with be our 'x' node for bellman
   int x = temp.verticies().size();
   temp.add_vertex(x);
@@ -41,13 +104,8 @@ void Johnson::shortest_paths() {
 
   auto bf = Bellman_ford(temp, x);
   bf.shortest_path();
-  std::vector<int> temp_distances = bf.distance;
+  temp_distances = bf.distance;
   
-  for(auto d : temp_distances)
-    std::cout << d << " ";
-  std::cout << "\n";
-  
-  undirected_graph<int, int> reweighted_graph;
   for(auto v : G.verticies())
     reweighted_graph.add_vertex(v.data);
 
@@ -58,34 +116,6 @@ void Johnson::shortest_paths() {
     reweighted_graph.add_edge(e.source, e.target, weight);
   }
 
-
-
-  for(auto e : reweighted_graph.edges())
-    std::cout << e.weight << " ";
-  std::cout << "\n";
-
-  /* reweighted graph finished */
-
-  /* run dijkstras on all verticies */
-  /* distances[0] holds vector of distances to nodes from vertex 0 */
-  std::vector<std::vector<int>> distances;
-  std::vector<std::vector<int>> parents;
-
-  for(auto v : reweighted_graph.verticies()) {
-    auto d = Dijkstra(reweighted_graph, v.data);
-    d.shortest_path();
-    std::cout << v.data << " -> " << v.data << "\n";
-    d.print_path();
-    distances.push_back(d.distance);
-    parents.push_back(d.parent);
-  }
-
-
-  /* should move printing of path to its own function. also need to find costs of original graph by using path
-
-
-
-  return;
 }
 
 #endif

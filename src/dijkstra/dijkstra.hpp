@@ -47,7 +47,7 @@ void Dijkstra::shortest_path() {
         queue.push(std::make_pair(distance[v], v));
         parent[v] = u;
       }
-    }
+    }  
   }
   
   return;
@@ -64,12 +64,18 @@ void Dijkstra::print_cost() {
 }
 
 void Dijkstra::print_path() {
+  
+  // for(auto v : G.verticies())
+  //   std::cout << v.data << " -> " << v.data << "\n";
+
   for(int i = 0; i < parent.size(); i++) {
 
     if(parent[i] != -1) {
+
       std::vector<int> path;
       path.push_back(i);
       int p = parent[i];
+
       while(p != -1) {
         path.push_back(p);
         p = parent[p];
@@ -84,7 +90,9 @@ void Dijkstra::print_path() {
       std::cout << path[path.size() - 1] << "\n";
 
     }
+
   }
+
 }
 
 #endif

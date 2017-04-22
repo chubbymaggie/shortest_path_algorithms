@@ -9,15 +9,18 @@
 struct Bellman_ford {
   undirected_graph<int, int> G;
   int src;
+
+  bool negative_cycle = false;
   std::vector<int> distance;
   std::vector<int> parent;
 
-  Bellman_ford(undirected_graph<int, int> & G, int src)
+  Bellman_ford(undirected_graph<int, int> G, int src)
     : G(G), src(src), distance(G.verticies().size(), INT_MAX), parent(G.verticies().size(), -1) { }
 
   void shortest_path();
   void print_cost();
   void print_path();
+  bool has_negative_cycle();
 
 };
 
@@ -41,6 +44,7 @@ void Bellman_ford::shortest_path() {
      int v = e.target;
      int w = e.weight;
      if(distance[u] != INT_MAX && distance[u] + w < distance[v]) {
+       negative_cycle = true;
        std::cout << "Graph contains a negative cycle\n";
        return;
      }
@@ -81,6 +85,10 @@ void Bellman_ford::print_path() {
     }
   }
 
+}
+
+bool Bellman_ford::has_negative_cycle() {
+  return negative_cycle;
 }
 
 #endif

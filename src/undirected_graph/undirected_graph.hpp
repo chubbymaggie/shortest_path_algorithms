@@ -24,8 +24,6 @@ struct edge {
   int source;
   int target;
   int weight;
-
-  int get_weight() { return weight; }
 };
 
 /*
@@ -101,7 +99,7 @@ int undirected_graph<V, E>::add_edge(int u, int v, int w) {
   edge_set.emplace_back(u, v, w);
   int e = edge_set.size() - 1; //index into edge_set
   vertex_set[u].edge_list.push_back(e);
-  vertex_set[v].edge_list.push_back(e);
+  //vertex_set[v].edge_list.push_back(e);
   return e;
 }
 

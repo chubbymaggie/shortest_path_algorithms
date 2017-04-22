@@ -17,6 +17,8 @@ int main() {
 
   auto f = Floyd(ug);
   f.shortest_paths();
+  f.print_costs();
+  f.print_paths();
 
   return 0;
 }

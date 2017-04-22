@@ -8,33 +8,32 @@
 
 struct Floyd {
   undirected_graph<int, int> G;
+  std::vector<std::vector<int>> distances;
+  std::vector<std::vector<int>> parents;
 
-  Floyd(undirected_graph<int, int> & G) : G(G) { }
+  Floyd(undirected_graph<int, int> & G) : G(G) {
+    for(auto v : G.verticies()) {
+      std::vector<int> dtemp(std::vector<int>(G.verticies().size(), 3000000));
+      std::vector<int> ptemp(std::vector<int>(G.verticies().size(), 0));
+      distances.push_back(std::move(dtemp));
+      parents.push_back(std::move(ptemp));
+    }
+  }
 
   void shortest_paths();
+  void print_paths();
+  void print_costs();
 
 };
 
 void Floyd::shortest_paths() {
-  std::vector<std::vector<int>> distances;
-  std::vector<std::vector<int>> parents;
 
-  for(auto v : G.verticies()) {
-    std::vector<int> dtemp;
-    std::vector<int> ptemp2;
-    for(int i = 0; i < G.verticies().size(); i++) {
-      dtemp.push_back(3000000); //INT_MAX causes an overflow.. not sure what to do here
-      ptemp2.push_back(0);
-    }
-    distances.push_back(std::move(dtemp));
-    parents.push_back(std::move(ptemp2));
-  }
-
-  // clean this up - this sets up the initial distances vector
+  // set up the initial distances vector
   for(int i = 0; i < G.verticies().size(); i++) {
     distances[i][i] = 0;  // I think this might break something if there is a negative cycle
     for(int j = 0; j < G.verticies()[i].edge_list.size(); j++) {
-      distances[i][G.edges()[G.verticies()[i].edge_list[j]].target] = G.edges()[G.verticies()[i].edge_list[j]].weight;
+      auto edge = G.verticies()[i].edge_list[j];
+      distances[i][G.edges()[edge].target] = G.edges()[edge].weight;
     }
   }
   
@@ -50,21 +49,25 @@ void Floyd::shortest_paths() {
     }
   }
 
-  for(auto v : distances) {
-    for(auto i : v) {
-      std::cout << i << ' ';
-    }
-    std::cout << "\n";
-  }
+  return;
+}
 
+void Floyd::print_paths() {
   for(auto v : parents) {
     for(auto i : v) {
       std::cout << i << ' ';
     }
     std::cout << "\n";
   }
+}
 
-  return;
+void Floyd::print_costs() {
+  for(auto v : distances) {
+    for(auto i : v) {
+      std::cout << i << ' ';
+    }
+    std::cout << "\n";
+  }
 }
 
 #endif

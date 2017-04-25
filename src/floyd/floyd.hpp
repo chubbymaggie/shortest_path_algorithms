@@ -28,13 +28,12 @@ struct Floyd {
 
 void Floyd::shortest_paths() {
 
-  // set up the initial distances vector
-  for(int i = 0; i < G.verticies().size(); i++) {
-    distances[i][i] = 0;  // I think this might break something if there is a negative cycle
-    for(int j = 0; j < G.verticies()[i].edge_list.size(); j++) {
-      auto edge = G.verticies()[i].edge_list[j];
-      distances[i][G.edges()[edge].target] = G.edges()[edge].weight;
-    }
+  for(auto v : G.verticies()) {
+    distances[v.data][v.data] = 0;
+  }
+
+  for(auto e : G.edges()) {
+    distances[e.source][e.target] = e.weight;
   }
   
   //The actual algorithm

@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/bellman_ford/bellman_ford.hpp
+../undirected_graph/undirected_graph.hpp
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/undirected_graph/undirected_graph.hpp
+vector
+-
+climits
+-
+iostream
+-
+
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/test/test_bellmanford.cpp
+../bellman_ford/bellman_ford.hpp
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/bellman_ford/bellman_ford.hpp
+../undirected_graph/undirected_graph.hpp
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/undirected_graph/undirected_graph.hpp
+algorithm
+-
+chrono
+-
+iostream
+-
+numeric
+-
+random
+-
+vector
+-
+
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/undirected_graph/undirected_graph.hpp
+vector
+-
+

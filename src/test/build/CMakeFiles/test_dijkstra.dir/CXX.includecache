@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/dijkstra/dijkstra.hpp
+../undirected_graph/undirected_graph.hpp
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/undirected_graph/undirected_graph.hpp
+vector
+-
+iostream
+-
+queue
+-
+climits
+-
+algorithm
+-
+
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/test/test_dijkstra.cpp
+../dijkstra/dijkstra.hpp
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/dijkstra/dijkstra.hpp
+../undirected_graph/undirected_graph.hpp
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/undirected_graph/undirected_graph.hpp
+algorithm
+-
+chrono
+-
+iostream
+-
+numeric
+-
+random
+-
+vector
+-
+
+/Users/mweyandt/Documents/#Spring 2017/alg/shortest_path_algorithms/src/undirected_graph/undirected_graph.hpp
+vector
+-
+

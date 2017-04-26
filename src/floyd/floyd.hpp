@@ -5,6 +5,7 @@
 #include <vector>
 #include <climits>
 #include <iostream>
+#include <iomanip>
 
 struct Floyd {
   undirected_graph<int, int> G;
@@ -34,6 +35,7 @@ void Floyd::shortest_paths() {
 
   for(auto e : G.edges()) {
     distances[e.source][e.target] = e.weight;
+    parents[e.source][e.target] = e.target;
   }
   
   //The actual algorithm
@@ -42,7 +44,7 @@ void Floyd::shortest_paths() {
       for(int j = 0; j < G.verticies().size(); j++) {
         if(distances[i][k] + distances[k][j] < distances[i][j]) {
           distances[i][j] = distances[i][k] + distances[k][j];
-          parents[i][j] = k;
+          parents[i][j] = parents[i][k];
         }
       }
     }
@@ -52,13 +54,34 @@ void Floyd::shortest_paths() {
 }
 
 void Floyd::print_paths() {
-  std::cerr << "Function (Floyd::print_paths) is not implemented\n";
+  for(int i = 0; i < parents.size(); i++) {
+    for(int j = 0; j < parents[i].size(); j++) {
+
+      if(parents[i][j] == -1) {
+        std::cout << i << " -> " << j << "\n";
+      }
+      else {
+        int u = i;
+        int v = j;
+        std::vector<int> path;
+        path.push_back(u);
+        while(u != v) {
+          u = parents[u][v];
+          path.push_back(u);
+        }
+        for(int y = 0; y < path.size() - 1; y++) {
+          std::cout << path[y] << " -> ";
+        }
+        std::cout << path[path.size() - 1] << "\n";
+      }
+    }
+  }
 }
 
 void Floyd::print_costs() {
   for(auto v : distances) {
     for(auto i : v) {
-      std::cout << i << ' ';
+      std::cout << std::setw(2) << i << ' ';
     }
     std::cout << "\n";
   }

@@ -14,7 +14,7 @@ void print_graph(undirected_graph<int, int> & G) {
   }
 
   for(auto e : G.edges()) {
-    std::cout << "\t" << e.source << " -> " << e.target << ";\n";
+    std::cout << "\t" << e.source << " -> " << e.target << "[ label=" << e.weight << " ];\n";
   }
 
   std::cout << "}\n";

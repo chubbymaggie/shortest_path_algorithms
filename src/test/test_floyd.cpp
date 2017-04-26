@@ -8,7 +8,7 @@
 #include <vector>
 
 const int S = 10;
-const int N = 100;
+const int N = 120;
 
 int main() {
 
@@ -29,12 +29,12 @@ for (int n = S; n <= N; n += S) {
       ug.add_vertex(i);
 
       /* for sparse graph */
-      //ug.add_edge(i, random[i], rand() % 40);
+      ug.add_edge(i, random[i], rand() % 40);
 
       /* for dense graph */
-      for(int j = 0; j < n; j++) {
-        ug.add_edge(i, j, rand() % 40);
-      }
+      // for(int j = 0; j < n; j++) {
+      //   ug.add_edge(i, j, rand() % 40);
+      // }
     }
 
     // Set up Dijkstra

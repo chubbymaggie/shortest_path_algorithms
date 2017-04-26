@@ -8,7 +8,7 @@
 #include <vector>
 
 const int S = 1000;
-const int N = 10000;
+const int N = 1000000;
 
 int main() {
 

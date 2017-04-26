@@ -5,6 +5,7 @@
 #include "../bellman_ford/bellman_ford.hpp"
 #include "../dijkstra/dijkstra.hpp"
 #include <vector>
+#include <iomanip>
 
 struct Johnson {
   undirected_graph<int, int> G;
@@ -77,7 +78,7 @@ void Johnson::print_paths() {
 void Johnson::print_costs() {
   for(auto v : distances) {
     for(auto i : v) {
-      std::cout << i << ' ';
+      std::cout << std::setw(2) << i << ' ';
     }
     std::cout << "\n";
   }

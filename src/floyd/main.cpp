@@ -55,6 +55,12 @@ int main() {
 
   auto f = Floyd(ug);
   f.shortest_paths();
+
+  if(f.has_negative_cycle()) {
+    std::cerr << "Graph has negative cycle\n";
+    return 1;
+  }
+  
   f.print_costs();
   f.print_paths();
 

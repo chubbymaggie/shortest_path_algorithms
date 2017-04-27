@@ -96,7 +96,7 @@ void Johnson::reweight_graph(undirected_graph<int, int> & G, undirected_graph<in
     temp.add_edge(e.source, e.target, e.weight);
   }
 
-  //temp.verticies().size() with be our 'x' node for bellman
+  //temp.verticies().size() will be our 'x' node for bellman
   int x = temp.verticies().size();
   temp.add_vertex(x);
   for(auto v : temp.verticies()) {
@@ -109,9 +109,7 @@ void Johnson::reweight_graph(undirected_graph<int, int> & G, undirected_graph<in
   
   for(auto v : G.verticies())
     reweighted_graph.add_vertex(v.data);
-
   
-
   for(auto e : G.edges()) {
     int weight = e.weight + temp_distances[e.source] - temp_distances[e.target];
     reweighted_graph.add_edge(e.source, e.target, weight);

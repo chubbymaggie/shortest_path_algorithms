@@ -14,13 +14,14 @@ struct Floyd {
 
   Floyd(undirected_graph<int, int> & G) : G(G) {
     for(auto v : G.verticies()) {
-      std::vector<int> dtemp(std::vector<int>(G.verticies().size(), 3000000));
+      std::vector<int> dtemp(std::vector<int>(G.verticies().size(), 3000000)); // INT_MAX causes overflow in main loop
       std::vector<int> ptemp(std::vector<int>(G.verticies().size(), -1));
       distances.push_back(std::move(dtemp));
       parents.push_back(std::move(ptemp));
     }
   }
-
+  
+  bool has_negative_cycle();
   void shortest_paths();
   void print_paths();
   void print_costs();
@@ -37,8 +38,7 @@ void Floyd::shortest_paths() {
     distances[e.source][e.target] = e.weight;
     parents[e.source][e.target] = e.target;
   }
-  
-  //The actual algorithm
+
   for(int k = 0; k < G.verticies().size(); k++) {
     for(int i = 0; i < G.verticies().size(); i++) {
       for(int j = 0; j < G.verticies().size(); j++) {
@@ -51,6 +51,14 @@ void Floyd::shortest_paths() {
   }
 
   return;
+}
+
+bool Floyd::has_negative_cycle() {
+  for(int i = 0; i < G.verticies().size(); i++) {
+    if(distances[i][i] != 0)
+      return true;
+  }
+  return false;
 }
 
 void Floyd::print_paths() {

@@ -45,9 +45,9 @@ void Bellman_ford::shortest_path() {
      int w = e.weight;
      if(distance[u] != INT_MAX && distance[u] + w < distance[v]) {
        negative_cycle = true;
-       std::cout << "Graph contains a negative cycle\n";
+       std::cerr << "Graph contains a negative cycle\n";
        return;
-     }
+      }
    }
 
    return;

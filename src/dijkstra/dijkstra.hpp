@@ -64,9 +64,6 @@ void Dijkstra::print_cost() {
 }
 
 void Dijkstra::print_path() {
-  
-  // for(auto v : G.verticies())
-  //   std::cout << v.data << " -> " << v.data << "\n";
 
   for(int i = 0; i < parent.size(); i++) {
 

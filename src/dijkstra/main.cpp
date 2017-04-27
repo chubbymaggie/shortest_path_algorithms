@@ -60,7 +60,7 @@ int main() {
   dj.print_cost();
   dj.print_path();
 
-  // print_graph(ug);
+  print_graph(ug);
 
   return 0;
 }
